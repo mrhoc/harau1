@@ -15,7 +15,7 @@ const HomePage = () => {
     useEffect(() => {
         var config = {
             method: 'get',
-            url: '/api/products/top-sale',
+            url: '//api.harau.vn/api/products/top-sale',
         };
         axios(config)
             .then(function (response) {
@@ -29,7 +29,7 @@ const HomePage = () => {
     useEffect(() => {
         var config = {
             method: 'get',
-            url: '/api/products/top-new',
+            url: '//api.harau.vn/api/products/top-new',
         };
         axios(config)
             .then(function (response) {
@@ -44,7 +44,7 @@ const HomePage = () => {
     useEffect(() => {
         var config = {
             method: 'get',
-            url: '/api/banners',
+            url: '//api.harau.vn/api/banners',
         };
         axios(config)
             .then(function (response) {

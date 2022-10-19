@@ -13,7 +13,7 @@ const Orders = () => {
        
         var config = {
             method: 'get',
-            url: `/api/orders?From=2015-03-04T00:00:00.000&To=${today}`,
+            url: `//api.harau.vn/api/orders?From=2015-03-04T00:00:00.000&To=${today}`,
             headers: { Authorization: `Bearer ${token}` },
         };
 

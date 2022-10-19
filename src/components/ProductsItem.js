@@ -31,7 +31,7 @@ const ProductsItem = ({ product }) => {
             console.log('unliked');
             var config = {
                 method: 'delete',
-                url: `/api/wishlist/${ip}`,
+                url: `//api.harau.vn/api/wishlist/${ip}`,
                 headers: { Authorization: `Bearer ${token}` },
                 data: ip
             };
@@ -51,7 +51,7 @@ const ProductsItem = ({ product }) => {
             console.log('liked');
             var config = {
                 method: 'post',
-                url: `/api/wishlist/${ip}`,
+                url: `//api.harau.vn/api/wishlist/${ip}`,
                 headers: { Authorization: `Bearer ${token}` },
                 data: ip
             };

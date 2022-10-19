@@ -34,7 +34,7 @@ const Login = () => {
 
         var config = {
             method: 'post',
-            url: '/identity/login',
+            url: '//api.harau.vn/identity/login',
             headers: { 
                 'Content-Type': 'application/json',
               },

@@ -11,11 +11,11 @@ function App() {
   const useAppContext = useContext(AppContext)
   const {setproducts, setproductsCat,setuser,user,favorites,currentUser,products,setfavorites,reloadFoverites } = useAppContext;
   
-  
+
   useEffect(() => {
     var config = {
       method: 'get',
-      url: '/api/wishlist',
+      url: '//api.harau.vn/api/wishlist',
       headers: { Authorization: `Bearer ${token}` }
     };
     axios(config)
@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: '/api/products/',
+      url: '//api.harau.vn/api/products/',
       
     };
     axios(config)
@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: '/profile/user',
+      url: '//api.harau.vn/profile/user',
       headers: { Authorization: `Bearer ${token}` },
     };
     axios(config)

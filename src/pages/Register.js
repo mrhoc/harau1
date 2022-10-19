@@ -38,7 +38,7 @@ const Register = () => {
 
         var config = {
             method: 'post',
-            url: '/identity/register',
+            url: '//api.harau.vn/identity/register',
             headers: {
                 'Content-Type': 'application/json',
             },

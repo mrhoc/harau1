@@ -17,7 +17,7 @@ const ListCategories = () => {
     
         var config = {
             method: 'get',
-            url: '/api/categories',
+            url: '//api.harau.vn/api/categories',
         };
         axios(config)
             .then(function (response) {

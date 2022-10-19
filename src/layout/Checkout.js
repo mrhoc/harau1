@@ -185,7 +185,7 @@ const Checkout = () => {
 
         var config = {
             method: 'post',
-            url: '/api/orders',
+            url: '//api.harau.vn/api/orders',
             headers: { Authorization: `Bearer ${token}`,'Content-Type': 'application/json' },
             data: data
         };

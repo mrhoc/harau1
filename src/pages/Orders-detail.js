@@ -14,7 +14,7 @@ const OrdersDetail = () => {
         console.log(today);
         var config = {
             method: 'get',
-            url: `/api/orders/${ordersKey}`,
+            url: `//api.harau.vn/api/orders/${ordersKey}`,
             headers: { Authorization: `Bearer ${token}` },
         };
 

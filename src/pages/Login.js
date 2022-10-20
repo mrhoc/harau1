@@ -149,7 +149,7 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div className="GateLayout__Bg-cr7ybx-2 fDxdCa"><img src={bg} className="GateLayout__ImageTopLeft-cr7ybx-3 hHcaRl" /><img src={a1951685fa3474f6eb8c306adbe6204a} className="GateLayout__ImageTopRight-cr7ybx-4 eZkJsz" /><img src={ba2622d292e9341b265ded7245853198} className="GateLayout__ImageBottomLeft-cr7ybx-5 hwiqXA" /><img src={a482c967e50fef21791147c113f4a4afb} className="GateLayout__ImageBottomRight-cr7ybx-6 ioIsJo" /></div>
+                <div className="GateLayout__Bg-cr7ybx-2 fDxdCa"><img src={bg} className="GateLayout__ImageTopLeft-cr7ybx-3 hHcaRl" /></div>
             </div>
         </div>
 

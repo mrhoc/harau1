@@ -75,7 +75,7 @@ const HomePage = () => {
 
                 <div className="ShowcaseWidget__SectionTitle-jbddbf-0 cMedBm">
                     <h4 className="ant-typography">Giảm Giá</h4>
-                    <a href="/market?tags=NEW_PRODUCTS"><span>Xem tất cả</span></a>
+                    <a href="#"><span>Xem tất cả</span></a>
                 </div>
                 <div className="ShowcaseWidget__List-jbddbf-2 eYhdLP">
                     {products.length !== 0 ? products.map(item => <div className="ShowcaseWidget__Item-jbddbf-3 enmLXv" key={item.id}>

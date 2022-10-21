@@ -92,7 +92,7 @@ const Header = () => {
                     <Link className="TopNav__TopNavLinkItem-sc-1g6u0p6-7 eofORe" to="/" onClick={()=>{setactiveCat('')}}>
                         <div className="TopNav__KamereoLogo-sc-1g6u0p6-0 dCAXhN">
                             <div>
-                                <img src={logo} width='160px' />
+                                <img src={logo} width='160px' height='99px' />
                             </div>
                         </div>
                     </Link>

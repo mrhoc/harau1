@@ -1,51 +1,51 @@
 import React, { useState } from 'react'
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from '../providers/Index';
 import { useContext } from 'react';
-import { DatePicker, Space,notification } from 'antd';
+import { DatePicker, Space, notification, Modal, Input } from 'antd';
 import axios from 'axios';
 import Moment from 'moment';
-import moment from 'moment';
-const Checkout = () => {
-    const navigate=useNavigate();
+const { TextArea } = Input;
 
-    const [deliveryInfoTime, setdeliveryInfoTime] = useState(()=>{
-        var a = new Date((new Date()).valueOf() + 1000*3600*24);
+const Checkout = () => {
+    const navigate = useNavigate();
+    const [note,setnote]=useState('');
+
+    const [deliveryInfoTime, setdeliveryInfoTime] = useState(() => {
+        var a = new Date((new Date()).valueOf() + 1000 * 3600 * 24);
         a.setHours(7);
         a.setMinutes(0);
         return a.toISOString();
     });
-    console.log(deliveryInfoTime);
+
     var token = localStorage.getItem('ajs_user_id')
-    const { RangePicker } = DatePicker;
+
+
     const openNotification = (des) => {
         notification.open({
-          message: 'Thông báo',
-          description:
-            des,
-          onClick: () => {
-            console.log('Notification Clicked!');
-          },
+            message: 'Thông báo',
+            description:
+                des,
+            onClick: () => {
+                console.log('Notification Clicked!');
+            },
         });
-      };
-    const onChange = (value, dateString) => {
-
-
     };
+   
     const onOk = (value) => {
         setdeliveryInfoTime(value.toISOString())
 
 
     };
-    
+
     const useAppContext = useContext(AppContext)
-    const { shopCart,user, setshopCart, products, setproducts, setcount, favorites, setfavorites, setreloadFoverites, reloadFoverites, currentUser } = useAppContext;
+    const { shopCart, user, setshopCart, products, setproducts, setcount, favorites, setfavorites, setreloadFoverites, reloadFoverites, currentUser } = useAppContext;
 
     const hanlePlus = (s, p) => {
         const index = [...products].findIndex(obj => obj.key === p.key);
         const index1 = [...favorites].findIndex(obj => obj.key === p.key);
         var new_sl = products[index].sl;
-   
+
 
         if (s == 'plus') {
             setproducts([...products], products[index].sl += 1);
@@ -57,14 +57,14 @@ const Checkout = () => {
             else {
                 setproducts([...products], products[index].sl = 1)
             }
-           
+
 
         }
         const cart = [...products].filter(i => i.sl > 0)
         setshopCart(cart);
 
     }
-  
+
     const hanldeRemove = (item) => {
         console.log(item.key);
 
@@ -79,10 +79,10 @@ const Checkout = () => {
             // setreloadFoverites(!reloadFoverites);
             setproducts([...products], products[index2].sl = 0)
             // setfavorites([...favorites], favorites[index3].sl = 0);
-           
+
             removeCart.splice(index, 1)
             setshopCart(removeCart)
-           
+
         }
 
     }
@@ -161,32 +161,32 @@ const Checkout = () => {
     }
 
     const handleOrders = () => {
-        
-       var custom_shopcart=[...shopCart].map(item=>{
-        return {...item,ProductCode:item.code,ProductName:item.name,amount:item.price*item.sl,quantity:item.sl}
-       })
-    
+
+        var custom_shopcart = [...shopCart].map(item => {
+            return { ...item, ProductCode: item.code, ProductName: item.name, amount: item.price * item.sl, quantity: item.sl }
+        })
+
         var data = JSON.stringify({
             "customerInfo": user,
             "deliveryInfo": {
-                "address": user.address==null?user.phoneNumber:user.address,
+                "address": user.address == null ? user.phoneNumber : user.address,
                 "time": deliveryInfoTime,
-                "note": "string"
+                "note": note
             },
             "paymentInfo": {
-                "totalAmount":parseInt(tong_tien()),
+                "totalAmount": parseInt(tong_tien()),
                 "paymentMethod": 1,
                 "totalDiscountAmount": 0,
                 "totalPaymentAmount": parseInt(tong_tien())
             },
             "items": custom_shopcart
         });
-        
+
 
         var config = {
             method: 'post',
             url: '//api.harau.vn/api/orders',
-            headers: { Authorization: `Bearer ${token}`,'Content-Type': 'application/json' },
+            headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             data: data
         };
 
@@ -202,6 +202,19 @@ const Checkout = () => {
                 openNotification('Vui lòng nhập ngày giao hàng!');
             });
     }
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+        setnote(note)
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+        setnote('')
+    };
 
     return <div>
         <div className="CheckoutPage__Container-sc-10rj4ea-0 EalTZ">
@@ -227,20 +240,31 @@ const Checkout = () => {
                             </div>
                             <div className="StepCol-sc-1dfs1l2-0 CheckoutStep1__StepCol-k6o3b0-1 bBHXhC">
                                 <div className="Label-sc-1t6hh05-0 duoMBh"><span>Ngày giao hàng</span></div>
-                                <div className="Value-sc-15o9mgu-0 eKRzIr" style={{marginTop:'5px'}}>
-                                    
+                                <div className="Value-sc-15o9mgu-0 eKRzIr" style={{ marginTop: '5px' }}>
+
                                     <Space direction="vertical" size={12}>
-                                        <DatePicker placeholder={Moment(deliveryInfoTime).format('DD-MM-YYYY H:s')} showNow showTime onChange={onChange} onOk={onOk} />
+                                        <DatePicker placeholder={Moment(deliveryInfoTime).format('DD-MM-YYYY H:s')} showNow showTime  onOk={onOk} />
 
                                     </Space>
                                     {/* <span style={{color:'red'}}>{deliveryInfoTime??'Hãy nhập ngày giao hàng'}</span> */}
                                 </div>
                             </div>
-                            {/* <div className="StepCol-sc-1dfs1l2-0 CheckoutStep1__StepCol-k6o3b0-1 bBHXhC">
-                                <div className="Label-sc-1t6hh05-0 duoMBh"><span>Thành tiền</span></div>
-                                <div color="#FE5043" className="Value-sc-15o9mgu-0 iGZmDm"><span className="Money-doxtx5-0 brYFgQ">90,000đ</span>
+                            <div className="StepCol-sc-1dfs1l2-0 CheckoutStep1__StepCol-k6o3b0-1 bBHXhC" style={{ display: 'flex', alignItems: 'flex-end' }}>
+
+                                <div style={{ color: '#2f904f', cursor: 'pointer' }} className="Value-sc-15o9mgu-0 iGZmDm"><span onClick={showModal} className="Money-doxtx5-0 brYFgQ">Thêm ghi chú</span>
                                 </div>
-                            </div> */}
+                                <Modal okButtonProps={{
+                                    children: "Gửi"
+                                }}
+                                    okText="Gửi"
+                                    cancelText="hủy"
+                                    cancelButtonProps={{
+                                        children: "hủy"
+                                    }} title="Ghi chú đơn hàng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                    <TextArea value={note} onChange={(e)=>{setnote(e.target.value)}} rows={4} />
+
+                                </Modal>
+                            </div>
                         </div>
                     </div>
                     <table className="StepItem__Table-sc-17m0775-0 BAdQC">
@@ -276,7 +300,7 @@ const Checkout = () => {
                             <div style={{ flex: '1 1 0%' }} />
                             <div className="Value-sc-15o9mgu-0 eKRzIr"><span className="Money-doxtx5-0 brYFgQ">{tong_tien().toLocaleString()}đ</span></div>
                         </div>
-                        <div className="Footer__ButtonWrapper-sc-17r70f1-1 eltBLd" style={{ 'justify-content': 'flex-end' }}>
+                        <div className="Footer__ButtonWrapper-sc-17r70f1-1 eltBLd" style={{ 'justifyContent': 'flex-end' }}>
 
                             <div className="ant-btn Button-jgr7l8-0 iPsOaJ ant-btn-primary" onClick={() => { handleOrders() }}><span>Đặt hàng</span></div>  </div>
                     </div>

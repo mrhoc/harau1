@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import avt from '../assets/images/DefaultAvatar.5fd6e724.svg'
 import { AppContext } from '../providers/Index';
 import { Link } from 'react-router-dom';
+import avataDefault from '../assets/images/ava.png'
 const Sidebar = () => {
     const useAppContext = useContext(AppContext);
     const { isOpenMenu,setisOpenMenu, currentUser, setcurrentUser,user } = useAppContext;
@@ -22,7 +23,7 @@ const Sidebar = () => {
         <div className="SideNav__SideNavContainer-sc-1olbv6e-18 bJhEAi">
             <nav className={`${isOpenMenu ? 'opened' : ''} SideNav__SideNavWrapper-sc-1olbv6e-15 JvmDA `}>
                 <div className="SideNav__StoreContainer-sc-1olbv6e-0 fDfLf">
-                    <div className="SideNav__StoreWrapper-sc-1olbv6e-2 eWakyH"><img src={user.avatarPath} className="SideNav__StoreAvatar-sc-1olbv6e-1 hzPbem" />
+                    <div className="SideNav__StoreWrapper-sc-1olbv6e-2 eWakyH"><img src={user.avatarPath?user.avatarPath:avataDefault} className="SideNav__StoreAvatar-sc-1olbv6e-1 hzPbem" />
                         <div className="SideNav__StoreInfo-sc-1olbv6e-3 cgdFUK">
 
                             <Link className="SideNav__ChangeStoreBtn-sc-1olbv6e-6 eCcCfA" to="/signin" onClick={() => { setcurrentUser({}) }}>

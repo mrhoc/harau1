@@ -10,7 +10,7 @@ const OrdersDetail = () => {
     var token = localStorage.getItem('ajs_user_id')
     const useAppContext = useContext(AppContext)
     const navigate=useNavigate();
-    const { ordersKey,setdetail,detail,products,setshopCart } = useAppContext;
+    const { ordersKey,setdetail,detail,products,setshopCart,user } = useAppContext;
     useEffect(() => {
         let today=new Date().toISOString()
         console.log(today);
@@ -73,7 +73,7 @@ const OrdersDetail = () => {
                                 <div className="OrderSummary__InfoRow-ugckj3-0 cVHuBw"><span className="styledComponents__Label-cp2vq4-2 gjrqGn"><span>Mã đơn hàng</span></span><span className="OrderSummary__Value-ugckj3-4 dTwnQL" style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{detail.key}</span></div>
                                 <div className="OrderSummary__InfoRow-ugckj3-0 cVHuBw"><span className="styledComponents__Label-cp2vq4-2 gjrqGn"><span>Ngày đặt hàng</span></span><span className="OrderSummary__Value-ugckj3-4 dTwnQL">{Moment(detail.createdAt).format('DD-MM-YYYY')}</span></div>
                                 <div className="OrderSummary__InfoRow-ugckj3-0 cVHuBw"><span className="styledComponents__Label-cp2vq4-2 gjrqGn"><span>Ngày giao hàng</span></span><span className="OrderSummary__Value-ugckj3-4 dTwnQL">{}</span></div>
-                                <div className="OrderSummary__InfoRow-ugckj3-0 cVHuBw"><span className="styledComponents__Label-cp2vq4-2 gjrqGn"><span>Người đặt hàng</span></span><span className="OrderSummary__Value-ugckj3-4 dTwnQL">Admin</span></div>
+                                <div className="OrderSummary__InfoRow-ugckj3-0 cVHuBw"><span className="styledComponents__Label-cp2vq4-2 gjrqGn"><span>Người đặt hàng</span></span><span className="OrderSummary__Value-ugckj3-4 dTwnQL">{user.fullName}</span></div>
                                 <div className="OrderSummary__InfoRow-ugckj3-0 cVHuBw"><span className="styledComponents__Label-cp2vq4-2 gjrqGn"><span>Tên cửa hàng</span></span><span className="OrderSummary__Value-ugckj3-4 dTwnQL">HARAU</span></div>
                             </div>
                             <div className="ant-col ant-col-sm-12 ant-col-lg-8" style={{ paddingLeft: 4, paddingRight: 4 }}>

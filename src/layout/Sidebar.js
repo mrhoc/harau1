@@ -18,7 +18,7 @@ const Sidebar = () => {
         orders = '/signin'
     }
     var path=window.location.pathname;
-
+    console.log(user);
     return (
         <div className="SideNav__SideNavContainer-sc-1olbv6e-18 bJhEAi">
             <nav className={`${isOpenMenu ? 'opened' : ''} SideNav__SideNavWrapper-sc-1olbv6e-15 JvmDA `}>

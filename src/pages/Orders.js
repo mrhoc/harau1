@@ -7,7 +7,7 @@ import { NumericFormat } from 'react-number-format';
 const Orders = () => {
     var token = localStorage.getItem('ajs_user_id')
     const useAppContext = useContext(AppContext)
-    const { orders, setorders,setordersKey } = useAppContext;
+    const { orders, setorders,setordersKey,currentUser } = useAppContext;
     useEffect(() => {
         let today=new Date().toISOString()
        
@@ -31,7 +31,7 @@ const Orders = () => {
         return () => {
 
         };
-    }, []);
+    }, [currentUser]);
 
     const renderOrders = () => {
         return orders && orders.map(order =>

@@ -6,6 +6,7 @@ export const AppContext = createContext();
 const AppProviders = ({ children }) => {
    //user
    const [user, setuser] = useState({})
+   const [token, settoken] = useState('');
 
    const [isOpenMenu, setisOpenMenu] = useState(false)
    const [products, setproducts] = useState([])

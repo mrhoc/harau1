@@ -43,7 +43,7 @@ const Header = () => {
             {
               key: '2',
               label: (
-                <Link rel="noopener noreferrer" to="/signin" onClick={()=>{setcurrentUser({})}}>
+                <Link rel="noopener noreferrer" to="/signin" onClick={()=>{setcurrentUser({});localStorage.setItem('ajs_user_id','')}}>
                   Đăng xuất
                 </Link>
               ),

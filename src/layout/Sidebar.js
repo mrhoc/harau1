@@ -19,6 +19,7 @@ const Sidebar = () => {
     }
     var path=window.location.pathname;
     console.log(user);
+    console.log(currentUser);
     return (
         <div className="SideNav__SideNavContainer-sc-1olbv6e-18 bJhEAi">
             <nav className={`${isOpenMenu ? 'opened' : ''} SideNav__SideNavWrapper-sc-1olbv6e-15 JvmDA `}>

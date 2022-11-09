@@ -23,7 +23,21 @@ const AppProviders = ({ children }) => {
    const [reloadFoverites,setreloadFoverites]=useState(false)
 
    
-   const [currentUser, setcurrentUser] = useState({})
+   //init login
+  
+   const [currentUser, setcurrentUser] = useState(()=>{
+      let userName=localStorage.getItem('userName');
+      let password=localStorage.getItem('password');
+      if(userName&&userName!==null && password&&password!==null){
+         return {
+            userName,
+            password
+         }
+      }
+      else{
+         return {}
+      }
+   })
 
    return <AppContext.Provider value={
       {

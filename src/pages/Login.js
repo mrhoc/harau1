@@ -46,6 +46,9 @@ const Login = () => {
                 console.log(JSON.stringify(response.data));
                 if(response.data){
                     localStorage.setItem('ajs_user_id',response.data.accessToken);
+                    localStorage.setItem('ajs_user_id',response.data.accessToken);
+                    localStorage.setItem('userName',values.userName);
+                    localStorage.setItem('password',values.password);
                     setcurrentUser(values)
                     navigate('/')
                     

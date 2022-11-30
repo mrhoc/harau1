@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: '//api.harau.vn/api/products/',
+      url: '//api.harau.vn/api/products?size=-1',
       
     };
     axios(config)
